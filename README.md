@@ -6,7 +6,7 @@
 - [Recommendations](#recommendations)
 
 ### Project Overview
-
+During this project, I conducted an indepth analysis on Toman Bike Shop to find insights on what days/hour are most profitable and how price changes have affected profit.
 ![Screenshot 2024-08-09 152040](https://github.com/user-attachments/assets/5f50c005-583a-49f9-a911-23dffb7c8fb1)
 
 ### Data Sources
@@ -14,7 +14,9 @@ Revenue Data: The primay dataset used for this analysis is the bike_share_yr_0.c
 
 ### Tools
 Power BI (Power Query) - Data Cleaning/Creating Reports
+
 SQL(PostgreSQL) - Data Analysis
+
 PowerPoint - Create Presenetation
 
 ### Data Cleaning/Transformation 
@@ -40,28 +42,46 @@ SQL code
 
 '''
 WITH cte AS (
+
 SELECT *
+
 FROM bike_year_0
+
 UNION
+
 SELECT *
+
 FROM bike_year_1)
 
-SELECT 
+SELECT
+
 dteday,
+
 season,
+
 cte.yr,
-weekday,
-hr,
+
+
 ride_type,
+
 riders,
+
 price,
+
 COGS,
+
 riders * price AS revenue,
+
 riders*price - COGS AS profit
+
 FROM cte
+
 LEFT JOIN cost_table
+
 on cte.yr = cost_table.yr
+
 order by price desc, profit desc
+
 LIMIT 100
 
 
@@ -81,7 +101,3 @@ The analysis results are summarized as follows:
  - Increase the price by 10%
 
 
-### Limitations
-
-
-### References
